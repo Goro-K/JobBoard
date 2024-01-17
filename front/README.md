@@ -1,30 +1,27 @@
-# React + TypeScript + Vite
+# Projet Job Board en React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Description
 
-Currently, two official plugins are available:
+Ce projet est une refonte d'un Job Board initialement développé en JavaScript, Node.js, et MariaDB. L'objectif est de reconstruire le projet en utilisant une stack moderne qui inclut React, TypeScript, et Vite, tout en finalisant les fonctionnalités qui n'avaient pas été complétées dans la version originale.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+La durée maximale allouée pour ce projet est de 5 jours. L'accent sera mis sur l'optimisation du temps et l'efficacité, en particulier en ce qui concerne la gestion des routes avec React Router Dom.
 
-## Expanding the ESLint configuration
+# Fonctionnalités
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Authentification Entreprise / Utilisateur: Système d'authentification robuste pour les entreprises et les utilisateurs.
+- Gestion des Offres d'Emploi: Implémentation complète du CRUD pour les offres d'emploi, permettant des interactions futures.
+- Gestion Admin: Interface d'administration pour la gestion des utilisateurs et des offres d'emploi.
 
-- Configure the top-level `parserOptions` property like this:
+# Objectifs Clés
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- Refaire le projet avec une stack moderne (React, TypeScript, Vite).
+- Finaliser les fonctionnalités non complétées du projet initial.
+- Optimiser la gestion des routes avec React Router Dom.
+- Développer une interface utilisateur propre et intuitive.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+# Technologies Utilisées
+
+- Frontend: React avec TypeScript, utilisant Vite comme outil de build.
+- Routing: React Router Dom pour la gestion des routes.
+- Backend (suggéré): Node.js avec une base de données MariaDB.
+- Authentification: Stratégies d'authentification pour les entreprises et les utilisateurs.
