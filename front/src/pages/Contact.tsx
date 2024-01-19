@@ -4,7 +4,7 @@ import Form from '../components/Form';
 const Contact : React.FC = () => {
     return (
         <div className="contact">
-            <Form 
+            <Form
                 title="Contact us"
             />
         </div>

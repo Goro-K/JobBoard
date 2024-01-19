@@ -8,7 +8,7 @@ const Header: React.FC = () => {
                 <nav className='nav'>
                     <NavLink to="/" className='button nav_item'>Home</NavLink>
                     <NavLink to="/contact" className='button nav_item'>Contact</NavLink>
-                    <NavLink to="/login" className='button nav_item'>Login</NavLink>
+                    <NavLink to="/type_auth" className='button nav_item'>Login</NavLink>
                 </nav>
             </header>
             <main>
