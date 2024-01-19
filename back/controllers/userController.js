@@ -8,9 +8,9 @@ const TOKEN = process.env.TOKEN
 
 exports.signupUser = async (req, res) => {
     let user = req.body;
+    console.log(user)
     const regexMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w+)+$/; //regex for email address
     const regexPhone = /^((\+)33|0)[1-9](\d{2}){4}$/; // Regex for french phone number
-    console.log(user)
 
 
     const emailUser = await pool.query("SELECT Email FROM Users WHERE Email = ?", [user.email]); // Get all email address from companies
@@ -64,7 +64,6 @@ exports.loginUser = async (req, res) => {
     try {
         // Retrieve the password used in the database
         const query = await pool.query("SELECT UserID, FirstName, LastName, Email, Password FROM Users WHERE Email = ?", [email])
-        console.log(query[0].Email)
         if (query.length === 1) {
             const hashedPassword = query[0].Password; // the password is hashed
 

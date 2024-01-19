@@ -7,38 +7,38 @@ dotenv.config();
 const TOKEN = process.env.TOKEN;
 
 exports.signupCompany = async (req, res) => {
-    let companyUser = req.body;
-    console.log(companyUser)
+    let company = req.body;
+    console.log(company)
     const regexMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w+)+$/; //regex for email address
     const regexPhone = /^((\+)33|0)[1-9](\d{2}){4}$/; // Regex for french phone number
-    const emailCompany = await pool.query("SELECT EmailAddress FROM Companies WHERE EmailAddress = ?", [companyUser.companyemail]); // Get all email address from companies
+    const emailCompany = await pool.query("SELECT EmailAddress FROM Companies WHERE EmailAddress = ?", [company.email]); // Get all email address from companies
 
-    if (!companyUser.companyemail || !regexMail.test(companyUser.companyemail) || (emailCompany.length > 0 && emailCompany[0].EmailAddress === companyUser.companyemail)) {
+    if (!company.companyemail || !regexMail.test(company.companyemail) || (emailCompany.length > 0 && emailCompany[0].EmailAddress === company.companyemail)) {
         return res.status(400).json({ message: "Incorrect email" });
     }
 
-    if (!companyUser.phone || !regexPhone.test(companyUser.phone)) {
+    if (!company.phone || !regexPhone.test(company.phone)) {
         return res.status(400).json({ message: "Incorrect phone number" });
     }
-    if (!companyUser.passwordconfirm) {
+    if (!company.passwordconfirm) {
         return res.status(400).json({ message: "Password confirm cannot be empty" });
     }
-    if (!companyUser.companyName) {
+    if (!company.companyName) {
         return res.status(400).json({ message: "Incorrect company name" });
     }
-    if (companyUser.password !== companyUser.passwordconfirm) {
+    if (company.password !== company.passwordconfirm) {
         return res.status(400).json({message: "Password had to be the same"})
     }
 
     try { //Create a hash password
-        companyUser.password = await bcrypt.hash(companyUser.password, 10)
-        companyUser.passwordconfirm = await bcrypt.hash(companyUser.passwordconfirm, 10)
+        company.password = await bcrypt.hash(company.password, 10)
+        company.passwordconfirm = await bcrypt.hash(company.passwordconfirm, 10)
     } catch (err) {
         res.status(500).json({ err })
     }
 
     try { // Insert company in database
-        const result = await pool.query("INSERT INTO Companies (CompanyName, Phone, EmailAddress, Password, PasswordConfirm, Presentation) VALUES (?, ?, ?, ?, ?, ?)", [companyUser.companyName, companyUser.phone, companyUser.companyemail, companyUser.password, companyUser.passwordconfirm, companyUser.presentation]);
+        const result = await pool.query("INSERT INTO Companies (CompanyName, Phone, EmailAddress, Password, PasswordConfirm, Presentation) VALUES (?, ?, ?, ?, ?, ?)", [company.companyName, company.phone, company.companyemail, company.password, company.passwordconfirm, company.presentation]);
         res.send({ message: 'Company created successfully', insertId: Number(result.insertId) });
     } catch (err) {
         throw err;
